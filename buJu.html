@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>三栏固定布局</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wrapper {
+            width: 960px;
+            margin: 0 auto;
+            border: 1px solid;
+            /*            background: #ccc;height:1000px;*/
+        }
+        header {
+            background: #f00;
+        }
+        nav {
+            width: 120px;
+            float: left;
+            background: #dcd9c0;
+        }
+        nav .inner {
+            padding: 10px;
+        }
+        nav li {
+            list-style-type: none;
+            /*            line-height: 45px;*/
+        }
+        article {
+            width: 700px;
+            float: left;
+            background: #ffaa53;
+            /*            从宽度中间去40px;不会导致右面的浮动下移，但繁琐*/
+            //padding: 10px 20px;
+
+        }
+        /*       在容器内部元素上添加内边距（或外边距）不会导致右面的浮动下移；前提没有明确设定宽度，每个都要调整*/
+        //article h2,article p{padding: 10px 20px;}
+        article .inner {
+            margin: 10px;
+            border: 2px solid red;
+            padding: 10px 20px;
+        }
+        aside {
+            width: 140px;
+            float: left;
+            /*            padding: 0 15px;*/
+            background: #3f7ccf;
+        }
+        aside .inner {
+            padding: 10px;
+        }
+        footer {
+            background: #aaa;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <header>
+            <h1>水木年华</h1>
+        </header>
+        <nav>
+            <div class="inner">
+                <ul>
+                    <li>电视剧</li>
+                    <li>电影</li>
+                    <li>音乐</li>
+                    <li>娱乐</li>
+                </ul>
+            </div>
+        </nav>
+        <article>
+            <div class="inner">
+                <h2>moments in life</h2>
+                <p>There are moments in life when you miss someone so much that you just want to pick them from your dreams and hug them for real! Dream what you want to dream;go where you want to go;be what you want to be,because you have only one life and one chance to do all the things you want to do.</p>
+                <h2>enough happiness</h2>
+                <p>May you have enough happiness to make you sweet,enough trials to make you strong,enough sorrow to keep you human,enough hope to make you happy? Always put yourself in others’shoes.If you feel that it hurts you,it probably hurts the other person, too.</p>
+            </div>
+        </article>
+        <aside>
+            <div class="inner">
+                <p>The happiest of people don’t necessarily have the best of everything;they just make the most of everything that comes along their way.Happiness lies for those who cry,those who hurt, those who have searched,and those who have tried,for only they can appreciate the importance of people</p>
+            </div>
+        </aside>
+        <footer>
+            <ol>
+                <li>联系我们</li>
+                <li>提供建议</li>
+                <li>版权所有</li>
+            </ol>
+        </footer>
+    </div>
+</body>
+
+</html>
