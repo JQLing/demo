@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>设计搜索表单</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            font-family: helvetica,arial,sans-serif;
+            display: block;
+            overflow: hidden;
+            width: 500px;
+            margin:30px;
+            border-radius: 6px;
+            background: #ddd;
+        }
+        .stylin_form_search1{
+            float: right;
+            width: 200px;
+            margin: 5px;
+            padding: 5px;
+        }
+        .stylin_form_search1 input{
+            float: right;
+            width: 70px; /*第一条 CSS 规则设定属性
+的初始状态和过渡参数*/
+            padding: 2px 0 3px 5px;
+            outline: none;/*去掉默认的突显轮廓线*/
+            font-size: .8em;
+            border-color: #eee #ccc #ccc #eee;
+            /*针对其他浏览器的厂商前缀*/
+            border-radius: 10px;
+            -webkit-transition:2s width; /*第二条 CSS 规则设定 事件发生时属性的目标状态。*/
+        }
+        form.stylin_form_search1 input:focus {
+            width: 200px;
+        }
+           form.stylin_form_search1 label{
+            display: none;     /* label中的search消失*/
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <form class="stylin_form_search1" action="#" method="post">
+            <label for="search">search</label>
+            <input type="search" id="search" name="search" placeholder="search" />
+                
+            
+        </form>
+    </header>
+
+</body>
+
+</html>
