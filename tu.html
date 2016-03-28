@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        body {
+            font-family: "Helvetica", "Arial", serif;
+            color: : #333;
+            margin: 1em 10%;
+        }
+        h1 {
+            color: #333;
+            background-color: transparent;
+        }
+        a {
+            color: #c60;
+            background-color: transparent;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        ul {
+            padding: 0;
+        }
+        li {
+            float: left;
+            padding: 1em;
+            list-style: none;
+        }
+        img {
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Snapshots</h1>
+    <ul>
+        <li><a href="images/fireworks.jpg" onclick="showPic(this);return false;" title="A fireworks display">Fireworks</a>
+        </li>
+        <li><a href="images/coffee.jpg" onclick="showPic(this);return false;" title="A cup of black coffee">Coffee</a>
+        </li>
+        <li><a href="images/rose.jpg" onclick="showPic(this);return false;" title="A red,red rose">Rose</a>
+        </li>
+        <li><a href="images/bigben.jpg" onclick="showPic(this);return false;" title="The famous clock">Big Ben</a>
+        </li>
+    </ul>
+    <img id="placeholder" src="images/placeholder.jpeg" alt="my image gallery" />
+    <p id="description">Choose an image.（选择一张图片）</p>
+    <script>
+        function showPic(whichpic) {
+            var source = whichpic.getAttribute("href");
+            var placeholder = document.getElementById("placeholder");
+            placeholder.setAttribute("src", source);
+            // var text= whichpic.getAttribute("title");
+            var description = document.getElementById("description");
+            alert(description.firstChild.nodeValue); //Choose an image.
+
+        }
+
+        function countBodyChildren() {
+            var body_element = document.getElementsByTagName("body")[0];
+
+            alert(body_element.childNodes.length);   // 11（ 为什么为 11 ？ ）
+            alert(body_element.nodeType);    // 1
+        }
+        window.onload = countBodyChildren;     // 函数引用
+    </script>
+
+</body>
+
+</html>
