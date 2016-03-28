@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>弹出层</title>
+    <style>
+        figure {
+            width: 100px;/*图片盒子宽度*/
+            height: 100px;/*图片盒子高度*/
+            margin: 20px 20px;/*图片盒子间距*/
+            border: 1px solid #666;/*图片边框*/
+            position: relative;/*为弹出层提供定位上下文*/
+            float: left; /*让图片并排显示*/
+        }
+        img {
+            display: block;/*去掉图片下方的基线空白*/
+        }
+        figcaption{
+            display: none;/*隐藏弹出层*/
+            position: absolute;
+            left: 74%;top:14px;/*把弹出层放到图片右侧*/
+            width: 130px;
+            padding: 10px;
+            background: #f2eaea;
+            border: 3px solid red;
+            border-radius: 6px;
+        }
+        figure:hover figcaption {/*鼠标悬停在图片上时显示弹出层*/
+            display: block;
+            z-index: 2;/*把弹出层放到最前面*/
+        }
+        figcaption h3{
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 6px;
+        }
+        figcaption a{
+            display: block;
+            text-decoration: none;
+            font-size: 12px;
+            color: #000；
+        }
+ 
+        figcaption::after{
+            /*红色三角形的盒子*/
+            content:"";/*需要有内容，这里是一个空字符串*/
+            position: absolute;/*相对于弹出层定位*/
+            border: 12px solid;
+            border-color: transparent red transparent transparent;
+            right: 100%;top:17px;/*相对于盒子边框定位三角形*/
+            height: 0px;width: 0px;/*收缩边框创造三角形*/
+        }
+    </style>
+</head>
+
+<body>
+    <figure>
+        <img src="../images/sun.jpg" alt="黄昏" />
+        <figcaption>
+            <h3>Pink Platforms</h3>
+            <a href="#">More info</a>
+        </figcaption>
+        </figure>
+        <figure class="click_me">
+            <img src="../images/sun.jpg" alt="黄昏" />
+            <figcaption>
+                <h3>Leopard Platforms</h3>
+                <a href="#">More info</a>
+            </figcaption>
+            </figure>
+            <figure class="click_me">
+                <img src="../images/sun.jpg" alt="黄昏" />
+                <figcaption>
+                    <h3>Red Platforms</h3>
+                    <a href="#">More info</a>
+                </figcaption>
+            </figure>
+</body>
+
+</html>
