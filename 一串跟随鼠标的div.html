@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一串跟随鼠标的div</title>
+    <style> 
+        div{
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+<script>
+    window.onload=function(){
+        var aDiv=document.getElementsByTagName('div');
+        var i=0;
+        
+        document.onmousemove=function(ev){
+            var oEvent=ev||event;
+            for(i=aDiv.length-1;i>0;i--)
+            {
+                aDiv[i].style.top=aDiv[i-1].style.top;
+                aDiv[i].style.left=aDiv[i-1].style.left;
+            }
+        aDiv[0].style.top=oEvent.clientY+'px';
+        aDiv[0].style.left=oEvent.clientX+'px';
+        };
+        
+    };
+</script>
+</body>
+
+</html>

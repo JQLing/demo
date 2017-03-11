@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>缓冲运动</title>
+    <style type="text/css">
+        #div1 {
+            position: absolute;
+            left: 600px;
+            top: 50px;
+            width: 100px;
+            height: 100px;
+            background: #77bee8;
+        }
+        span {
+            width: 1px;
+            height: 500px;
+            background: #000;
+            position: absolute;
+            left: 300px;
+            top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="开始运动" onclick=" startMove(300)" />
+    <div id="div1">
+        <h3>欢迎新同学进入安阳工学院</h3>
+    </div>
+    <span></span>
+    <script>
+        var timer = null;
+
+        function startMove(iTarget) {
+            var oDiv1 = document.getElementById('div1');
+
+            clearInterval(timer);
+            timer = setInterval(function () {
+                var iSpeed = (iTarget - oDiv1.offsetLeft) / 8;
+                iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : iSpeed = Math.floor(iSpeed);
+
+                /*注意运动的终止条件 >= ,== */
+                if (oDiv1.offsetLeft == iTarget) {
+                    clearInterval(timer);
+                } else {
+                    oDiv1.style.left = oDiv1.offsetLeft + iSpeed + 'px';
+                }
+                document.title = oDiv1.offsetLeft + ',iSpeed=' + iSpeed;
+ 
+            }, 30);
+        }
+    </script>
+</body>
+
+</html>

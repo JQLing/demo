@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>新浪微博</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #ul1 {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            margin: 10px auto;
+            overflow: hidden;
+        }
+        #ul1 li {
+            padding: 2px;
+            border-bottom: 1px dashed #999;
+            list-style: none;
+            filter: alpha(opacity: 0);
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <textarea id="txt1" rows="10" cols="40"></textarea>
+    <br/>
+    <input id="btn1" type="button" value="发布" />
+    <ul id="ul1">
+        <li>fdsaf</li>
+    </ul>
+    <script src="perfectMove--json.js"></script>
+    <script>
+        window.onload = function () {
+            var oTxt = document.getElementById('txt1');
+            var oBtn = document.getElementById('btn1');
+            var oUl = document.getElementById('ul1');
+            var aLi = oUl.getElementsByTagName('li');
+
+            oBtn.onclick = function () {
+                var oLi = document.createElement('li');
+                //var oText=document.createTextNode(oTxt.vlaue);
+                //oLi.appendChild(oText);
+                oLi.innerHTML = oTxt.value;
+                oTxt.value = '';
+
+                if (aLi.length) {
+                    oUl.insertBefore(oLi, aLi[0]);
+                } else {
+                    oUl.appendChild(oLi);
+                }
+                var iHeight = oLi.offsetHeight;
+                oLi.style.height = 0;
+
+                startMove(oLi, {
+                    height: iHeight
+                }, function () {
+                    startMove(oLi, {
+                        opacity: 100
+                    });
+                });
+            };
+        };
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+

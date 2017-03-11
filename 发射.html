@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>键盘控制div移动，回车发射</title>
+    <style>
+       
+        #div1{
+            position: absolute;
+            left: 100px;
+            top: 100px;
+/*            margin: 20px;*/
+            padding: 10px;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #111;
+            background: #aaf;
+        }
+    </style>
+</head>
+<body>
+<!--   eg：左右键自动翻页-->
+    <div id="div1"></div>
+    <script>
+        document.onkeydown=function(ev){
+            var oEvent=ev||event;
+            var oDiv=document.getElementById('div1');
+            //左键  37
+            //右键  39
+            //上键  38
+            //下键  40
+            //回车  13
+            //alert(oEvent.keyCode);
+            if(oEvent.keyCode==37)
+                {
+                    oDiv.style.left=oDiv.offsetLeft-10+'px';
+                }
+            else if(oEvent.keyCode==39){
+       /*注意margin的值，会影响offsetLeft*/         oDiv.style.left=oDiv.offsetLeft+10+'px';
+            }
+            else if(oEvent.keyCode==38){
+                /*注意margin的值，会影响offsetTop*/  
+                oDiv.style.top=oDiv.offsetTop-10+'px';
+            }
+            else if(oEvent.keyCode==40){
+                oDiv.style.top=oDiv.offsetTop+10+'px';
+            }
+        };
+        
+    </script>
+</body>
+</html>

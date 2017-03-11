@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .tab {
+            margin: 100px 100px;
+        }
+        input {
+            width: 100px;
+            border: none;
+            background: #ddf;
+        }
+        .active {
+            background: #2a2;
+        }
+        .tab-content {
+            width: 314px;
+            height: 150px;
+            border: 1px solid #ccc;
+            background: #eee;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="button" value="首页" class="active" />
+    <input type="button" value="博客" />
+    <input type="button" value="足迹" />
+    <div class="tab-content" style="display:block;">首页的内容</div>
+    <div class="tab-content">博客的内容</div>
+    <div class="tab-content">足迹的内容</div>
+
+    <script>
+        var aBtn=null;
+        var aDiv=null;
+        
+        window.onload =function(){
+            var oTab=new TabSwitch();
+        } ;
+            
+            function TabSwitch() 
+        {
+            this.aBtn = document.getElementsByTagName('input');
+            this.aDiv = document.getElementsByTagName('div');
+            var i = 0;
+            
+            var _this=this;
+            
+            for (i = 0; i < this.aBtn.length; i++) 
+            {
+                this.aBtn[i].index = i;
+                this.aBtn[i].onclick =function()
+                {
+                    _this.tab(this);
+                } ;
+            }
+        }
+        
+            TabSwitch.prototype.tab=function (oBtn) 
+            {
+                for (i = 0; i < this.aBtn.length; i++) 
+                {
+                    this.aBtn[i].className = '';
+                    this.aDiv[i].style.display = 'none';
+                }
+                this.aDiv[oBtn.index].style.display = 'block';
+                    /*     alert('点击了第'+oBtn.index+'个按钮');   */
+                    /*     this.aDiv[i].style.display='block';    */
+                oBtn.className = 'active';
+
+                };
+    </script>
+</body>
+
+</html>

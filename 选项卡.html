@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .tab{
+            margin: 100px 100px;
+        }
+        input{
+            width: 100px;
+            border: none;
+            background: #ddf;
+             
+        }
+        .active{
+            background: #2a2;
+        }
+        .tab-content{
+            width: 314px;
+            height: 150px;
+            border: 1px solid #ccc;
+            background: #eee;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="button" value="首页" class="active" />
+    <input type="button" value="博客" />
+    <input type="button" value="足迹" />
+    <div class="tab-content" style="display:block;">首页的内容</div>
+    <div class="tab-content">博客的内容</div>
+    <div class="tab-content">足迹的内容</div>
+
+<script>
+    window.onload=function(){
+        var aBtn=document.getElementsByTagName('input');
+        var aDiv=document.getElementsByTagName('div');
+        var i=0;
+        for(i=0;i<aBtn.length;i++){
+            aBtn[i].index=i;
+             aBtn[i].onclick=function(){
+                 for(i=0;i<aBtn.length;i++)
+                     {
+                         aBtn[i].className='';
+                         aDiv[i].style.display='none';
+                     }
+                 aDiv[this.index].style.display='block';
+/*                 alert('点击了第'+this.index+'个按钮');   */
+/*                 aDiv[i].style.display='block';        */
+                 this.className='active';
+                 
+        };
+        }
+    }
+</script>
+</body>
+</html>

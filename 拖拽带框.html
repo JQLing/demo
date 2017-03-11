@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#div1{
+			position: absolute;
+			width: 60px;
+			height: 60px;
+			background: yellow;
+		}
+		.box{
+			position: absolute;
+			border: 1px dashed #111;
+		}
+	</style>
+</head>
+<body>
+    <div>
+    	<div id="div1"></div>
+    </div>
+	
+	
+	<script>
+		window.onload=function(){
+			
+			var oDiv=document.getElementById('div1');
+			
+			oDiv.onmousedown=function(ev){
+				var oEvent=ev||event;
+				var disX=oEvent.clientX-oDiv.offsetLeft;
+				var disY=oEvent.clientY-oDiv.offsetTop;
+				
+				var oNewDiv=document.createElement('div');
+				oNewDiv.className='box';
+				oNewDiv.style.width=oDiv.offsetWidth-2+'px';
+oNewDiv.style.height=oDiv.offsetHeight-2+'px';
+				oNewDiv.style.left=oDiv.offsetLeft+'px';
+				oNewDiv.style.top=oDiv.offsetTop+'px';
+				
+		document.body.appendChild(oNewDiv);		 
+				
+				document.onmousemove=function(ev){
+					var oEvent=ev||event;
+					
+					oNewDiv.style.left=oEvent.clientX-disX+'px';
+					oNewDiv.style.top=oEvent.clientY-disY+'px';
+				};
+					
+				document.onmouseup=function(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+					
+					oDiv.style.left=oNewDiv.style.left;
+					oDiv.style.top=oNewDiv.style.top;
+					document.body.removeChild(oNewDiv);
+				};
+			
+
+			};
+		};
+	</script>
+</body>
+</html>

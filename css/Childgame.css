@@ -1,0 +1,147 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.wrapper {
+    position: relative;
+    height: 500px;
+    background: -webkit-linear-gradient(top, #ded48d, #fff);
+    cursor: crosshair;
+}
+.input-anima ~ .bird {
+    opacity: 0;
+    animation: move 8s linear infinite;
+    transition: .3s cubic-bezier(0, .45, 1, 0)
+}
+.bird {
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #000;
+    border-radius: 50% 50% 20% 20%;
+    animation: planeo .8s linear infinite;
+    cursor: crosshair;
+}
+.bird1 {
+    left: 100px;
+    top: 300px;
+    transform: scale(.9);
+    /*    跳过前面2s执行*/
+    animation-delay: -2s !important;
+}
+.bird2 {
+    top: 100px;
+    transform: scale(.5);
+    /*不要设置上面2的倍数*/
+    animation-delay: -5s !important;
+}
+.bird:before,
+.bird:after {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    content: "";
+}
+.bird:before {
+    width: 6px;
+    height: 6px;
+    background: #ef8975;
+    border-radius: 100% 0 20% 0;
+    transform: rotate(45deg);
+    margin-left: -3px;
+    margin-top: -2px;
+}
+.bird:after {
+    width: 100px;
+    height: 100px;
+    /*    background: #000;*/
+    border-radius: 50%;
+    box-shadow: inset 0 5px 0 #000;
+    margin-left: -50px;
+    margin-top: -7px;
+    transform-origin: 100% 0;
+    animation: alas 4s linear infinite;
+}
+/*--------------------------定义翅膀动画*/
+
+@keyframes alas {
+    50% {
+        /* 4*360*/
+        transform: rotateX(-1440deg);
+    }
+}
+/*--------------------------射中之后让它消失*/
+
+.input-anima ~ .bird {
+    opacity: 0;
+    animation: move 8s linear infinite;
+    transition: .3s cubic-bezier(0, .45, 1, 0)
+}
+/*input 即 没被选中的鸟出现*/
+
+.input-anima1:not(:checked) ~ .bird1,
+.input-anima2:not(:checked) ~ .bird2 {
+    opacity: 1;
+}
+/*--------------------------它消失之前说点什么*/
+
+.bird span {
+    display: none;
+    position: absolute;
+    top: -100%;
+    left: 10px;
+    width: 60px;
+    height: 20px;
+    padding: 10px;
+    border-radius: 50%;
+    border: 2px solid #f00;
+    background: #fff;
+}
+.bird span:before {
+    content: "哦哦。。。";
+    font-size: 12px;
+    color: #f00;
+}
+.input-anima1:checked ~ .bird1 span,
+.input-anima2:checked ~ .bird2 span {
+    display: block;
+}
+/*定义鸟儿在停留时的起伏动画*/
+
+@keyframes planeo {
+    40% {
+        transform: rotateZ(-2deg) translateX(2px) translateY(15px) translateZ(0);
+    }
+    80% {
+        transform: rotateZ(2deg) translateX(5px) translateY(15px) translateZ(0);
+    }
+}
+/*定义鸟儿移动时动画*/
+
+@keyframes move {
+    0% {
+        left: 0;
+    }
+    20% {
+        top: 50%;
+        left: 20%;
+    }
+    40% {
+        top: 30%;
+        left: 60%;
+    }
+    60% {
+        top: 80%;
+        left: 80%;
+    }
+    80% {
+        top: 10%;
+        left: 30%;
+    }
+    100% {
+        top: 50%;
+        left: 20%;
+    }
+}

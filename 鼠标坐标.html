@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标坐标</title>
+    <style>
+        body{
+            height: 2000px;
+        }
+        #box1{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: #aaf;
+        }
+    </style>
+</head>
+<body>
+   <div id="box1">简介：本书由某某著作而成......</div>
+    <script>     
+        document.onmousemove=function(ev)
+        {
+            var oBox1=document.getElementById('box1');
+            var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+            var scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
+            var oEvent=ev||event;
+            var t=oEvent.clientY;
+            var l=oEvent.clientX;
+            oBox1.style.top=scrollTop+t+'px';
+            oBox1.style.left=scrollLeft+l+'px';
+        };
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

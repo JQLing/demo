@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ctrl+enter提交留言</title>
+</head>
+<body>
+    <textarea id="txt1" rows="10" cols="40"></textarea><br />
+    <input id="txt2" type="text" />
+    <input id="btn1" type="button" value="提交" />
+    <script>
+        window.onload=function()
+        {
+            var oBtn=document.getElementById('btn1');
+            var oTxt1=document.getElementById('txt1');
+            var oTxt2=document.getElementById('txt2');
+            oBtn.onclick=function(){
+                oTxt1.value+=oTxt2.value+'\n';
+                oTxt2.value='';
+            };
+            oTxt2.onkeydown=function(ev){
+                var oEvent=ev||event;
+               /*  ctrl+enter  */ if(oEvent.ctrlKey&&oEvent.keyCode==13){
+                    oTxt1.value+=oTxt2.value+'\n';
+                    oTxt2.value='';
+                }
+            }
+        };
+    </script>
+</body>
+</html>

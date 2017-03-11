@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽+碰撞+重力3</title>
+    <style>
+        #div1{
+            position: absolute;
+            width:60px;
+            height: 60px;
+            background: red;
+        }
+        div{
+            position: absolute;
+            width:1px;
+            height: 1px;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+   <input id="btn1" type="button" value="开始运动" onclick="startMove()" />
+    <div id="div1"></div>
+    <script>
+        window.onload=function(){
+            var oDiv=document.getElementById('div1');
+            var lastX=0;
+            var lastY=0;
+            
+            oDiv.onmousedown=function(ev){
+                var oEvent=ev||event;
+                var disX=oEvent.clientX-oDiv.offsetLeft;
+                var disY=oEvent.clientY-oDiv.offsetTop;
+                
+                document.onmousemove=function(ev){
+                    var oEvent=ev||event;
+                    var l=oEvent.clientX-disX;
+                    var t=oEvent.clientY-disY;
+                    
+                    oDiv.style.left=l+'px';
+                    oDiv.style.top=t+'px';
+                    
+                    iSpeedX=l-lastX;
+                    iSpeedY=t-lastY;
+                    
+                    lastX=l;
+                    lastY=t;
+                    
+                    document.title='x:'+iSpeedX+',y:'+iSpeedY;
+                };
+                
+                document.onmouseup=function(){
+                    document.onmousemove=null;
+                    document.onmouseup=null;
+                    
+                    startMove();
+                };
+                clearInterval(timer);
+            };
+        };
+        
+        var timer=null;
+        
+        var iSpeedX=0;
+        var iSpeedY=0;
+        
+        function startMove(){
+            clearInterval(timer);
+            timer=setInterval(function(){
+                var oDiv=document.getElementById('div1');
+                
+                iSpeedY+=3;
+                
+                var l=oDiv.offsetLeft+iSpeedX;
+                var t=oDiv.offsetTop+iSpeedY;
+                
+                if(t>=document.documentElement.clientHeight-oDiv.offsetHeight){
+                    iSpeedY*=-0.8;
+                    iSpeedX*=0.8;
+                    /*高度会撑开底部，出现滚动条*/
+                    t=document.documentElement.clientHeight-oDiv.offsetHeight;
+                }
+                else if(t<=0){
+                    iSpeedY*=-1;
+                    iSpeedX*=0.8;
+                    t=0;
+                }
+                if(l>=document.documentElement.clientWidth-oDiv.offsetWidth){
+                    iSpeedX*=-0.8;
+                    l=document.documentElement.clientWidth-oDiv.offsetWidth;
+                }
+                else if(l<=0){
+                    iSpeedX*=-0.8;
+                    l=0;
+                }
+                
+                if(Math.abs(iSpeedX)<1){
+                    iSpeedX=0;
+                }
+                if(Math.abs(iSpeedY)<1){
+                    iSpeedY=0;
+                }
+                if(iSpeedX==0 && iSpeedY==0 && t==document.documentElement.clientHeight-oDiv.offsetHeight){
+                    clearInterval(timer);
+                }
+                else{
+                    oDiv.style.left=l+'px';
+                    oDiv.style.top=t+'px';                  
+                }
+                document.title=iSpeedX;
+            },30);
+        }
+    </script>
+</body>
+</html>

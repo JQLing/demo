@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>留言板/发表微博/发表评论/发表论坛</title>
+    <style>
+        #list li{
+            margin-bottom: 30px;
+    }
+    </style>
+</head>
+<body>
+   <section>
+    <textarea id="content"></textarea>
+    <input id="btn" type="button" value="发表评论" />
+    <ul id="list">
+        <li>【美帝的朋友圈被刷爆了：来自杭州小伙发明跟随飞行摄像机】在这个全民爱自拍的时代，自拍杆成为身边随处可见的产物。如今自拍杆恐怕要Out了，一名杭州帅锅推出了一款名为Hover Camera的无人飞行摄像机，它飞行平稳，自动规避障碍物。折叠便于携带，可以锁定拍摄对象实时跟踪拍摄。</li>
+    </ul>
+    </section>
+    <script>
+        window.onload=function()
+        {
+            var  oContent=document.getElementById('content');
+            var oBtn=document.getElementById('btn');
+            var oUl=document.getElementById('list');
+            var aLi=document.getElementsByTagName('li');
+            oBtn.onclick=function()
+            {
+                var oLi=document.createElement('li');
+                var content=oContent.value;
+                var txt=document.createTextNode(content);
+                oLi.appendChild(txt);
+                /* oLi.innerHTML=content; */
+                if(aLi.length==0)
+                    {
+                        oUl.appendChild(oLi);
+                    }
+                else
+                {
+                    oUl.insertBefore(oLi,aLi[0]);
+                }
+                
+            }
+
+        }
+    </script>
+</body>
+</html>

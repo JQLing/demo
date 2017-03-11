@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图片上下滚动</title>
+    <style>
+        *{padding: 0;margin: 0;}
+        #tab{
+            position: relative;
+            width: 120px;
+            margin: 20px auto;
+            height: 560px;
+            border: 1px solid #ccc;
+            
+        }
+        .tab_top{
+            position: absolute;
+            top: 0;
+            left:30px; 
+            height: 20px;
+            display: block;
+            z-index: 1;
+        }
+        .tab_top img,.tab_bottom img{
+            width: 30px;
+            height: 20px;
+        }
+        .tab_bottom{
+            position: absolute;
+            bottom: 0;
+            left: 30px;
+            height: 20px;
+            display: block;
+            z-index: 1;
+        }
+        #box{
+            position: relative;
+            width:100px;
+            height: 520px;
+            margin: 20px 10px;
+            overflow: hidden;
+        }
+       #box ul{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+        #box li{
+            
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="tab">
+       <div class="tab_top"><img src="images/flower.png" /></div>
+       <div class="tab_bottom"><img src="images/flower.png" /> </div>
+       <div id="box">
+        <ul>
+            <li><img src="images/sight10-1.png"></li>
+            <li><img src="images/sight11-1.png"></li>
+            <li><img src="images/sight12-1.png"></li>
+            <li><img src="images/sight13-1.png"></li>
+            <li><img src="images/sight14-1.png"></li>
+
+        </ul>
+        </div>
+    </div>
+    <script>
+        
+        window.onload=function()
+        {
+            var oTab=document.getElementById('tab');
+            var aDiv=oTab.getElementsByTagName('div');
+            var aImg=oTab.getElementsByTagName('img');
+            var oBox=document.getElementById('box');
+            var oUl=oBox.getElementsByTagName('ul')[0];
+            var aLi=oUl.getElementsByTagName('li');
+            var timer=null;
+            var iSpeed=-5;
+            
+            oUl.innerHTML+=oUl.innerHTML;
+            oUl.style.height=aLi[0].offsetHeight*aLi.length+'px';
+            function posit()
+            {
+             oUl.style.top=oUl.offsetTop+iSpeed+'px';
+                if(oUl.offsetTop<-oUl.offsetHeight/2)
+                    {oUl.style.top='0px';}
+                else if(oUl.offsetTop>0)
+                    {
+                        oUl.style.top=-oUl.offsetHeight/2+'px';
+                    }  
+            }
+            timer=setInterval(posit,30);
+            aImg[0].onclick=function()
+            {
+                iSpeed=-5;
+            };
+            aImg[1].onclick=function()
+            {
+                iSpeed=5;
+            };
+            oUl.onmouseover=function(){
+                clearInterval(timer);
+            };
+            oUl.onmouseout=function(){
+                timer=setInterval(posit,30);
+            }
+        }
+        
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

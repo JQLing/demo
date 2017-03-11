@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件捕获</title>
+	<style>
+		#div1{
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="div1"></div>
+	<script>
+		window.onload=function(){
+			drag('div1');
+		};
+		
+		function drag(id){
+			var oDiv=document.getElementById(id);
+			
+			oDiv.onmousedown=function(ev){
+				var oEvent=ev||event;
+				var disX=oEvent.clientX-oDiv.offsetLeft;
+				var disY=oEvent.clientY-oDiv.offsetTop;
+				
+				if(oDiv.setCapture){
+					oDiv.onmousemove=fnMove;
+				    oDiv.onmouseup=fnUp;
+					
+					//IE事件捕获
+				   oDiv.setCapture();
+				}
+				else{
+					document.onmousemove=fnMove;
+				    document.onmouseup=fnUp;
+				}
+ 
+		    function fnMove(ev){
+					var oEvent=ev||event;
+					var l=oEvent.clientX-disX;
+					var t=oEvent.clientY-disY;
+					if(l<0){
+						l=0;
+					}
+					else if(l>document.documentElement.clientWidth-oDiv.offsetWidth){
+						l=document.documentElement.clientWidth-oDiv.offsetWidth;
+					}
+					if(t<0){
+						t=0;
+					}
+					else if(t>document.documentElement.clientHeight-oDiv.offsetHeight){
+						t=document.documentElement.clientHeight-oDiv.offsetHeight;
+					}
+					
+					oDiv.style.left=l+'px';
+					oDiv.style.top=t+'px';
+			}
+		
+		    function fnUp(){
+			    this.onmousemove=null;
+			    this.onmouseup=null;
+			    //IE
+			    if(this.releassCapture){
+				this.releassCapture();
+			    }
+			 
+		    }
+		};
+			return false;
+		}
+	</script>
+</body>
+</html>

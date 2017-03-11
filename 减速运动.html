@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>减速运动</title>
+    <style>
+        #div1{
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <input id="btn" type="button" value="开始运动" />
+    <div id="div1"></div>
+    <script>
+        var iSpeed=20;
+        function startMove(){
+            var oDiv=document.getElementById('div1');
+            
+            setInterval(function(){
+                iSpeed--;
+                oDiv.style.left=oDiv.offsetLeft+iSpeed+'px';
+            },30);
+        }
+        var oBtn=document.getElementById('btn');
+        oBtn.onclick=function(){
+            startMove();
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

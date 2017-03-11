@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全选</title>
+    <style>
+        label{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label><input type="checkbox" id="btn" />全选</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        <label><input type="checkbox" />文件夹1</label>
+        
+    
+    </div>
+    <script>
+        window.onload=function(){
+            oBtn=document.getElementById('btn');
+            aInput=document.getElementsByTagName('input');
+            oBtn.onclick=function(){
+                if(oBtn.checked==true){
+                for(var i=1;i<aInput.length;i++){
+                    aInput[i].checked=true;
+                }
+            }
+                else{
+                     for(i=1;i<aInput.length;i++){
+                    aInput[i].checked=false;
+                }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

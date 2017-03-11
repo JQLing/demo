@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{padding: 0;margin: 0;}
+        img{border: 0;}
+        .roll{
+            position: relative;
+            margin: 50px;
+            width: 1000px;
+            height: 220px;
+        }
+        .btn_left{
+            position: absolute;
+            top: 60px;
+            left: 0px;
+            width: 40px;
+            height: 100px;
+            display: block;
+            background: url(images/redflower.png) no-repeat 0px 0px;
+            z-index: 1;
+
+        }
+        .btn_left:hover{
+            background: url(images/redflower.png) no-repeat 0 0;
+        }
+        .btn_right{
+            position: absolute;
+            top: 60px;
+            right: 0px;
+            width: 40px;
+            height: 100px;
+            display: block;
+            background: url(images/redflower.png) no-repeat 1px 0px;
+            z-index: 1;
+        }
+        .btn_right:hover{
+            background: url(images/redflower.png) no-repeat 1px 0;
+        }
+        .wrap{
+			position: relative;
+            float: left;
+            width: 1005px;
+            height: 220px;
+            margin: 0 auto;
+            
+            overflow: hidden;  
+        }
+        .roll ul{
+            position: absolute;
+            left: 0;
+            top: 0;
+/*
+            width: 1340px;
+            height: 220px;
+*/
+        }
+        .roll li{
+			float: left;
+            width: 330px;
+            height: 220px;
+            padding-right: 5px;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="roll" class="roll">
+        <a class="btn_left" href="javascript:void(0);"></a>
+        <a class="btn_right" href="javascript:void(0);"></a>
+        <div class="wrap">
+        <ul>
+            <li><a><img src="./images/sight0.jpg"></a></li>
+            <li><a><img src="./images/sight1.jpg"></a></li>
+            <li><a><img src="./images/sight2.jpg"></a></li>
+            <li><a><img src="./images/sight3.jpg"></a></li>
+        </ul>
+        </div>
+    </div>
+    <script>
+        window.onload=function()
+        {
+            var oDiv=document.getElementById('roll');
+            var oUl=oDiv.getElementsByTagName('ul')[0];
+            var aLi=oUl.getElementsByTagName('li');
+            var aBtn=oDiv.getElementsByTagName('a');
+            
+            var iSpeed=-2;
+            var timer=null;
+            
+            /*写入li的个数=读取ul中li的个数，再加上原来li的个数*/
+            oUl.innerHTML+=oUl.innerHTML;
+			
+            oUl.style.width=(aLi[0].offsetWidth)*aLi.length+'px';
+			
+            timer=setInterval(roll,30);
+			
+            aBtn[0].onmousemove=function()
+            {
+                iSpeed=-2;
+            };
+            aBtn[1].onmousemove=function()
+            {
+                iSpeed=2;
+            };
+            
+            oUl.onmouseover=function()
+            {
+                clearInterval(timer);
+            };
+            oUl.onmouseout=function()
+            {
+                timer=setInterval(roll,30);
+            };
+			
+			function roll(){
+				oUl.style.left=oUl.offsetLeft+iSpeed+'px';
+                if(oUl.offsetLeft<-oUl.offsetWidth/2)
+                {
+                    oUl.style.left='0px';
+                }
+                else if(oUl.offsetLeft>0)
+                    {
+                        oUl.style.left=-oUl.offsetWidth/2+'px';
+                    }
+			}
+        }
+    </script>
+</body>
+</html>

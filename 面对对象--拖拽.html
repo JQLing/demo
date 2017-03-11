@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽div</title>
+    <style>
+        #div1 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+        #div2 {
+            position: absolute;
+            left: 0;
+            top: 150px;
+            width: 100px;
+            height: 100px;
+            background: #aaf;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <script>
+        
+        
+        window.onload =function(){
+            new Drag('div1');
+            new Drag('div2');
+        } ;
+        
+        function Drag(id) {
+            var _this=this;
+            this.disX=0;
+            this.disY =0;
+            this.oDiv = document.getElementById(id);
+
+            this.oDiv.onmousedown =function(ev){
+                _this.fnDown(ev);
+            } 
+        }
+
+        Drag.prototype.fnDown=function (ev) {
+            var _this=this;
+            var oEvent = ev || event;
+            this.disX = oEvent.clientX - this.oDiv.offsetLeft;
+            this.disY = oEvent.clientY - this.oDiv.offsetTop;
+
+            document.onmousemove = function(ev){
+                _this.fnMove(ev);
+            };
+            document.onmouseup = function(){
+                _this.fnUp();
+            };
+        };
+
+        Drag.prototype.fnMove=function (ev) {
+            var oEvent = ev || event;
+
+            this.oDiv.style.left = oEvent.clientX - this.disX + 'px';
+            this.oDiv.style.top = oEvent.clientY - this.disY + 'px';
+        };
+
+        Drag.prototype.fnUp=function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        };
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
